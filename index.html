@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .header{
+            width: 100%;
+            text-align: center;
+            background-color: #528FF0;
+            padding: 1%;
+            color: white;
+            font-size: 25px;
+        }
+        h2{
+            color:rgb(169, 68, 66) ;
+            text-align: center;
+        }
+        .container{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .first{
+            width: 50%;
+            border: 1px solid black;
+            padding: 1%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .second{
+            width: 52.3%;
+            border: 1px solid black;
+            /* padding: 1%; */
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        input[type="text"]{
+            padding: 2%;
+            width: 100%;
+            font-size: 20px;
+            border: none;
+            outline: none;
+            
+        }
+        .ui{
+            color: #00b7e1;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .mail{
+            color:rgb(169, 68, 66);
+        }
+        .copy{
+            padding: 40%;
+            position: relative;
+            right: 25px;
+            background-color: #337ab7;
+            color: aliceblue;
+            border-radius: 5px;
+        }
+        .sub{
+            padding: 0% 2% 0% 2%;
+            background-color: #337ab7;
+            color: aliceblue;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        @media screen and (max-width:800px){
+            .first{
+                width: 100%;
+            }
+            .second{
+                width: 100%;
+            }
+            .ui{
+            color: #00b7e1;
+            font-size: 15px;
+            font-weight: bold;
+             }
+             .copy{
+            padding: 20%;
+            position: relative;
+            right: 25px;
+            background-color: #337ab7;
+            color: aliceblue;
+            border-radius: 5px;
+        }
+
+        }
+        
+    </style>
+</head>
+<body>
+   <div class="header">Pay-ln</div> 
+   <h2>3500.00</h2>
+   <div class="container">
+        <div class="first">
+            <div>
+                <div class="ui">UPI ID:<span class="mail">loanrepay1114dd</span></div>
+            </div>
+            <div><button class="copy">Copy</button></div>
+            <input id="copyRef" style="display: none;" />
+        </div>
+        <div class="second">
+            <input type="text"  placeholder="Enter UTR"> <button class="sub">submit</button>
+            <!-- <div><button>submit</button></div> -->
+        </div> 
+   </div>
+   <script>
+    let copyText = document.getElementsByClassName("mail")[0]
+    let button = document.getElementsByClassName("copy")[0]
+    let hiddenInput = document.getElementById('copyRef');
+
+    button.addEventListener("click",async function(){
+        hiddenInput.value = copyText.innerText;
+        hiddenInput.select();
+        hiddenInput.setSelectionRange(0, 99999);
+        document.execCommand("copy")
+        navigator.clipboard.writeText(hiddenInput.value)
+        .then(() => {
+        alert("successfully copied");
+      })
+      .catch((e) => {
+        alert("something went wrong > "+e);})
+    })
+   </script>
+</body>
+</html>
